@@ -22,11 +22,10 @@ elseif option=="svd"
     [PCs, variances, images_pc, percents] = pca(images, 'option', "svd");
 end
 
-figure;
 im_show(PCs, 'num_images', 5, 'ncols', 5, 'title', "First 5 PCs");
 
 % Reconstruction using k Principle Components
-k = 100;
+k = 10;
 images_recons = PCs(:, 1:k) * images_pc(1:k, :) + m * ones(1, size(images, 2));
 im_show(images_recons, 'num_images', 5, 'title', "Reconstructed images using "+ k+" PCs");
 im_show(images, 'num_images', 5, 'title', "Original images");
