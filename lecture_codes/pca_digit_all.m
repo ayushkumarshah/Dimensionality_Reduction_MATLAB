@@ -16,6 +16,7 @@ if option=="eigen"
     [PCs, variances, images_pc, percents] = pca(images, 'option', "eigen");
 elseif option=="svd"
     [PCs, variances, images_pc, percents] = pca(images, 'option', "svd");
+end
 
 % Mean of the dataset
 m = mean(images, 2);
