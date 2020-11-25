@@ -1,6 +1,5 @@
 function [images] = read_images
-%output: image: nxN matrix, each column is an image
-% label: Nx1 vector, label for the digit for each image
+% output: images: 10304x400 matrix, each column is a face image
 
 data_dir = "../data/att_faces";
 

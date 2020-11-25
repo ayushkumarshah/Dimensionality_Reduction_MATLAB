@@ -27,8 +27,8 @@ elseif option == "svd"
     variances = diag(S).^2;    
 end
 
-total_var = sum(variances);
-    
+% Calculate and plot percentage variance
+total_var = sum(variances);    
 for i=1:length(variances)
     percents(i) = variances(i) / total_var;
     cum_percents(i) = sum(percents(1:i));
@@ -37,4 +37,5 @@ plot(cum_percents, 'o')
 xlabel('Principle Components', 'fontsize', 16)
 ylabel('Percentage of variance', 'fontsize', 16)
 
+% Transform data to PCs
 data_pc = PCs' * data;

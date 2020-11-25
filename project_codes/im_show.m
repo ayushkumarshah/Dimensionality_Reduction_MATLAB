@@ -6,11 +6,11 @@ function im_show(images, varargin)
 
 % Input parser arguments
 parser = inputParser;
-addOptional(parser,'ncols', 5);
-addOptional(parser,'figsize', [4000 1000]);
 addOptional(parser,'num_images', size(images, ndims(images)));
-addOptional(parser,'labels', 0);
 addOptional(parser,'title', "");
+addOptional(parser,'ncols', 5);
+addOptional(parser,'labels', 0);
+addOptional(parser,'figsize', [4000 1000]);
 parse(parser, varargin{:});
 
 ncols = parser.Results.ncols;
