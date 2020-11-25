@@ -19,7 +19,7 @@ images = images(:, 1:num_samples);
 
 % Mean of the dataset
 m = mean(images, 2);
-im_show(m, 'title', "Mean");
+im_show(m, 'title', "Mean (n="+num_samples+")", 'save', 1);
 
 if option=="eigen"
     [PCs, variances, images_pc, percents] = pca(images, 'option', "eigen");
@@ -27,13 +27,13 @@ elseif option=="svd"
     [PCs, variances, images_pc, percents] = pca(images, 'option', "svd");
 end
 
-im_show(PCs, 5, 'title', "First 5 PCs");
+im_show(PCs, 5, 'title', "First 5 PCs (n="+num_samples+")", 'save', 1);
 % im_show(PCs, 'num_images', 5, 'title', "First 5 PCs");
 
 % Reconstruction using k Principle Components
 k = 100;
 images_recons = PCs(:, 1:k) * images_pc(1:k, :) + m * ones(1, size(images, 2));
-im_show(images_recons, 5, 'title', "Reconstructed images using "+k+" PCs");
-im_show(images, 5, 'title', "Original images");
+im_show(images_recons, 5, 'title', "Reconstructed faces using "+k+" PCs (n="+num_samples+")", 'save', 1);
+im_show(images, 5, 'title', "Original faces (n="+num_samples+")", 'save', 1);
 
 end

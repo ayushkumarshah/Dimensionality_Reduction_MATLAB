@@ -10,6 +10,7 @@ addOptional(parser,'num_images', size(images, ndims(images)));
 addOptional(parser,'title', "");
 addOptional(parser,'ncols', 5);
 addOptional(parser,'labels', 0);
+addOptional(parser,'save', 0);
 addOptional(parser,'figsize', [4000 1000]);
 parse(parser, varargin{:});
 
@@ -17,6 +18,7 @@ ncols = parser.Results.ncols;
 figsize = parser.Results.figsize;
 num_images = parser.Results.num_images;
 labels = parser.Results.labels;
+save = parser.Results.save;
 main_title = parser.Results.title;
 position = [10 10 figsize];
 
@@ -48,4 +50,10 @@ elseif num_images > 1
         end
     end
     sgtitle(main_title, 'fontsize', 26)
+end
+
+% Save image file
+if save
+    figpath = "../results/"+main_title+".png";
+    saveas(gcf, figpath);
 end
