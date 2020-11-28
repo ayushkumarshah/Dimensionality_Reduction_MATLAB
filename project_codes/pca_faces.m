@@ -41,7 +41,7 @@ im_show(images_sub, 'title', "Original faces (n="+num_samples+")", 'save', 1, ..
         'folder', "Reconstruction_results");
     
 % Reconstruction varying number of eigen faces
-k = [100:50:250, 275:25:400];
+k = [50:50:250, 275:25:400];
 errors = zeros(1, length(k));
 for i=1:length(k)
     errors(i) = reconstruct(PCs, images_sub_pc, images_sub, m, k(i), num_samples);
