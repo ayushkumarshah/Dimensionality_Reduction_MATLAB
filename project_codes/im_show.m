@@ -11,6 +11,7 @@ addOptional(parser,'title', "");
 addOptional(parser,'ncols', 5);
 addOptional(parser,'labels', 0);
 addOptional(parser,'save', 0);
+addOptional(parser,'folder', "PCA_results");
 addOptional(parser,'figsize', [4000 1000]);
 parse(parser, varargin{:});
 
@@ -19,6 +20,7 @@ figsize = parser.Results.figsize;
 num_images = parser.Results.num_images;
 labels = parser.Results.labels;
 save = parser.Results.save;
+folder = parser.Results.folder;
 main_title = parser.Results.title;
 position = [10 10 figsize];
 
@@ -54,6 +56,6 @@ end
 
 % Save image file
 if save
-    figpath = "../results/"+main_title+".png";
+    figpath = "../results/"+folder+"/"+main_title+".png";
     saveas(gcf, figpath);
 end
