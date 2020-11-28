@@ -1,4 +1,4 @@
-function [PCs, variances, images_pc, percents, m] = pca_faces(varargin)
+function [PCs, variances, images_pc, percents, m, errors] = pca_faces(varargin)
 % Eg call: >> pca_faces();
 % Eg call: >> pca_faces(50);
 % Eg call: >> pca_faces(50, 'option', "svd");
@@ -30,10 +30,28 @@ end
 im_show(PCs, 5, 'title', "First 5 PCs (n="+num_samples+")", 'save', 1);
 % im_show(PCs, 'num_images', 5, 'title', "First 5 PCs");
 
-% Reconstruction using k Principle Components
-k = 100;
-images_recons = PCs(:, 1:k) * images_pc(1:k, :) + m * ones(1, size(images, 2));
-im_show(images_recons, 5, 'title', "Reconstructed faces using "+k+" PCs (n="+num_samples+")", 'save', 1);
-im_show(images, 5, 'title', "Original faces (n="+num_samples+")", 'save', 1);
+% Reconstruction using k Principle Components on a subset of images
+% Generating subset
+n_subset = 10;
+n_faces = 1;
+subset_idx = get_subset(n_subset, n_faces);
+images_sub = images(:, subset_idx);
+images_sub_pc = images_pc(:, subset_idx);
+im_show(images_sub, 'title', "Original faces (n="+num_samples+")", 'save', 1, ...
+        'folder', "Reconstruction_results");
+    
+% Reconstruction varying number of eigen faces
+k = [100:50:250, 275:25:400];
+errors = zeros(1, length(k));
+for i=1:length(k)
+    errors(i) = reconstruct(PCs, images_sub_pc, images_sub, m, k(i), num_samples);
+end
 
+figure;
+plot(k, errors, 'LineWidth', 3);
+figname = "../results/mse";
+xlabel('Principle Components (Eigen faces)', 'fontsize', 16)
+ylabel('Mean Squared error (MSE)', 'fontsize', 16)
+title("Reconstruction error", 'fontsize', 20)
+saveas(gcf, figname, "png");
 end
