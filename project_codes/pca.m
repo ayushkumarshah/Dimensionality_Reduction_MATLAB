@@ -10,7 +10,6 @@ option = parser.Results.option;
 % Perform PCA
 [num_features, num_samples] = size(data);
 percents = zeros(1, num_features);
-cum_percents = zeros(1, num_features);
 means = mean(data, 2);
 data = data - means * ones(1, num_samples);
 
@@ -30,13 +29,12 @@ end
 % Calculate and plot percentage variance
 total_var = sum(variances);
 for i=1:length(variances)
-    percents(i) = variances(i) / total_var;
-    cum_percents(i) = sum(percents(1:i));
+    percents(i) = variances(i) / total_var;    
 end
-
-figpath = "../results/PCA_variances(n="+int2str(num_samples)+")";
+cum_percents = cumsum(percents);
+figpath = "../results/PCA_results/PCA_variances(n="+int2str(num_samples)+")";
 plot_varpercents(cum_percents, figpath);
-plot_varpercents(cum_percents, figpath, 'zoom', 200);
+plot_varpercents(cum_percents, figpath, 'zoom', 400);
 
 % Transform data to PCs
 data_pc = PCs' * data;
