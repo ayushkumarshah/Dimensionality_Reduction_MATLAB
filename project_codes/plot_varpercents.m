@@ -17,7 +17,7 @@ if zoom
     figpath = figpath+" zoomed in";
 end
 
-xlabel('Principle Components (Eigenfaces)', 'fontsize', 16)
+xlabel('Eigenfaces', 'fontsize', 16)
 ylabel('Cumulative Percentage of Variance', 'fontsize', 16)
 
 saveas(gcf, figpath, "png");
