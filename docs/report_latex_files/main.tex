@@ -31,16 +31,16 @@
 
 \section{Objective}\label{intro}
 
-This report describes the use of Principle Component Analysis (PCA) for reducing the dimensions of face images by the extraction of eigenfaces as well as the reconstruction of reduced representation back to original dimensions. PCA works by finding better set of bases called as eigenfaces or principle components for representing the images and keeps only the important features (features with higher percentage of total variance in the images) to reduce the dimensions.
+This report describes the use of Principle Component Analysis (PCA) to reduce the dimensions of face images by the extraction of eigenfaces and the reconstruction of reduced representation back to original dimensions. PCA works by finding a better set of bases called eigenfaces or principle components to represent the images and keep only the important features (features with a higher percentage of the total variance in the images) to reduce the dimensions.
 
-This report outlines the application of PCA in face images of 40 different subjects with 10 images each. It also analyzes what the eigenfaces represents visually and how the importance of various eigenfaces changes (See Section \ref{Q1}). Likewise, it shows how well a subset of images can be reconstructed as the number of eigenfaces used to represent the reduced image increases (See Section \ref{Q2}).
+This report outlines the application of PCA in face images of 40 different subjects with 10 images each. It also analyzes what the eigenfaces represents visually and how the importance of various eigenfaces changes (See Section \ref{Q1}). Likewise, it shows how well PCA can reconstruct a subset of images as the number of eigenfaces used to represent the reduced image increases (See Section \ref{Q2}).
 
 \section{Using PCA to Extract Eigenfaces}\label{Q1}
 
 
 \subsection{How do the leading eigenfaces look like as an image?}\label{Q1.1}
 
-The first 5 eigenfaces appear to resemble the outline of a human-face. In the first eigenface, you can see a circular object. Varying contrasts highlight facial features like hair, eyes, mouth and ears on this object. However, the image appears mostly fuzzy with defining facial characteristics being unrecognizable. In contrast, the fifth eigenface displays more facial structure. A chin, cheekbones, eyebrows and a hair-parting can be made out. This would suggest that the more eigenfaces used then the more detailed the image becomes as all the images are basically the linear combination of these eigenfaces.
+The first five eigenfaces appear to resemble the outline of a human face. In the first eigenface, you can see a circular object. Varying contrasts highlight facial features like hair, eyes, mouth, and ears on this object. However, the image appears mostly fuzzy, with defining facial characteristics being unrecognizable. In contrast, the fifth eigenface displays more facial structure. A chin, cheekbones, eyebrows and a hair-parting can be made out. This suggests that the more eigenfaces used, the more detailed the image becomes as all the images are the linear combination of these eigenfaces.
 
 % Add image Examples 
 
@@ -54,9 +54,9 @@ The first 5 eigenfaces appear to resemble the outline of a human-face. In the fi
 
 \subsection{How does the importance of eigenfaces decrease?}\label{Q1.2}
 
-The first 50 eigenfaces out of 10,304 were found to be of very high importance since it represented 81.61\% of the total variance in the 400 input images as shown in Figure \ref{cum_percents}. Adding more eigenfaces increase the overall importance (variance) but at a slow rate compared to the first 50 i.e. the importance of each eigenface starts decreasing. For instance, the first 100 eigenfaces represent 89.06\% of the total variance, i.e. the second set of 50 eigenfaces account for just around 7.4\% importance compared to 81.61\% by the first 50. 
+We found the first 50 eigenfaces out of 10,304 to be of very high importance since it represented 81.61\% of the total variance in the 400 input images, as shown in Figure \ref{cum_percents}. Adding more eigenfaces increases the overall importance (variance) but at a slow rate compared to the first 50 i.e. the importance of each eigenface starts decreasing. For instance, the first 100 eigenfaces represent 89.06\% of the total variance. It means that the second set of 50 eigenfaces account for just around 7.4\% importance compared to 81.61\% by the first 50. 
 
-The importance of each eigenface becomes less further and does not contribute much to the total importance as more eigenfaces are added. The first 400 eigenfaces represents 99.42\% of the total variance. So, addition of more eigenfaces after 400 has nearly no contribution to the total variance. Therefore, the importance of an eigenface decreases almost quadratically up to 400 and then nearly stays constant at 0 up to 10,304 as shown in Figure \ref{cum_percents2}.
+Each eigenface's importance becomes less further and does not contribute much to the total importance as more eigenfaces are added. The first 400 eigenfaces represent 99.42\% of the total variance. So, the addition of more eigenfaces after 400 has nearly no contribution to the total variance. Therefore, the importance of an eigenface decreases almost quadratically up to 400 and then nearly stays constant close to 0 up to 10,304 as shown in Figure \ref{cum_percents2}.
 
 
 \begin{figure}[htp]
@@ -78,7 +78,7 @@ The importance of each eigenface becomes less further and does not contribute mu
 
 \subsection{What is the difference between reconstructed and original images as the number of eigenfaces used in reconstruction increases?}\label{Q2.1}
 
-As the number of eigenfaces used in facial image reconstruction increases, the quality of the reconstructed image increases as well. Using a low number of eigenfaces results in a poor quality and somewhat ``ghostly" reconstructed facial image as in Figure \ref{faces50}  (Turk \& Pentland, 1991). Using a high number of eigenfaces alternatively produces a reconstructed facial image which is almost parallel to that of its original inputted images, such as those shown in Figure \ref{faces400}. This is because those made from the highest number of eigenfaces account for the most variance between the inputted images (See Figure \ref{cum_percents}).  This is the case when using 400 eigenfaces as this was found to capture 99.99\% of the variance of the inputted images. 
+As the number of eigenfaces used in facial image reconstruction increases, the reconstructed image quality increases as well. Using a low number of eigenfaces results in poor quality and somewhat ``ghostly" reconstructed facial image as in Figure \ref{faces50}  (Turk \& Pentland, 1991). Using a high number of eigenfaces alternatively produces a reconstructed facial image that is almost parallel to its original inputted images, such as those shown in Figure \ref{faces400}. This is because those made from the highest number of eigenfaces account for the most variance between the inputted images (See Figure \ref{cum_percents}).  This is the case when using 400 eigenfaces as this was found to capture 99.99\% of the variance of the inputted images. 
 
 
 
@@ -109,7 +109,7 @@ As the number of eigenfaces used in facial image reconstruction increases, the q
 
 \subsection{How many eigenfaces are required to recover an original face with reasonable errors?}\label{Q2.2}
 
-We defined reasonable error through the use of both the metric Mean Squared Error (MSE) and by comparing visual differences between the original and reconstructed facial images. We found that reconstructed images consisting of 350 eigenfaces generated good quality images with identifiable facial characteristics. These images also had a MSE of 11.073. As a result, we concluded that any reconstructed facial image made from at least 350 eigenfaces and with an MSE value equal to or below 11.073, should be of a good enough quality so as to resemble their inputted original face with reasonable error. 
+We defined reasonable error by using both the metric Mean Squared Error (MSE) and comparing visual differences between the original and reconstructed facial images. We found that reconstructed images consisting of 350 eigenfaces generated good quality images with identifiable facial characteristics. These images also had an MSE of 11.073. As a result, we concluded that any reconstructed facial image made from at least 350 eigenfaces and with an MSE value equal to or below 11.073 should be of a good enough quality to resemble their inputted original face with a reasonable error. 
 
 \begin{figure}[htp]
     \centering
@@ -119,9 +119,7 @@ We defined reasonable error through the use of both the metric Mean Squared Erro
 \end{figure}
 
 \section{Conclusion}\label{conclusion}
-Thus, using PCA, we were able to reduce the dimensions of images from 10,304 to 350 with a very low reconstruction error. Moreover, using 400 dimensions has almost 0 reconstruction error. The ratio of reduction in size is great for various applications. Also, visualizing the eigenfaces as images helped us understand what it represents. For instance, the leading eigenfaces display fundamental facial features like chin,  mouth, nose, ears, hair, etc and all the images are the linear combination of these eigenfaces.
-
-
+Thus, using PCA, we reduced the dimensions of images from 10,304 to 350 with a very low reconstruction error. Moreover, using 400 dimensions has almost 0 reconstruction error. The ratio of size reduction is excellent for various applications. Also, visualizing the eigenfaces as images helped us understand what it represents. For instance, the leading eigenfaces display fundamental facial features like chin,  mouth, nose, ears, hair, etc and all the images are the linear combination of these eigenfaces.
 
 
 \end{document}
